@@ -94,4 +94,18 @@ public class BuilderConstants {
 												"<!ENTITY BZURL \"<<contentSpec.bugzillaUrl>>\">\n" + 
 												"<!ENTITY BZCOMPONENT \"<<contentSpec.bzcomponent>>\">\n" +
 												"<!ENTITY BZPRODUCT \"<<contentSpec.bzproduct>>\">";
+	
+	// VELOCITY TEMPLATE FILE NAMES
+	public static String BOOK_INFO_TEMPLATE_NAME		= "Book_Info.xml.vm";
+	public static String BOOK_ENT_TEMPLATE_NAME			= "Book.ent.vm";
+	public static String BOOK_TEMPLATE_NAME				= "Book.xml.vm";
+	public static String AUTHOR_GROUP_TEMPLATE_NAME		= "Author_Group.xml.vm";
+	public static String REVISION_HISTORY_TEMPLATE_NAME	= "Revision_History.xml.vm";
+	public static String PREFACE_TEMPLATE_NAME			= "Preface.xml.vm";
+	public static String EMPTY_TOPIC_TEMPLATE_NAME		= "EmptyTopicError.xml.vm";
+	public static String FAILED_VALIDATION_TOPIC_TEMPLATE_NAME	= "FailedValidationTopic.xml.vm";
+	public static String FAILED_INJECTION_TOPIC_TEMPLATE_NAME	= "FailedInjectionTopic.xml.vm";
+	public static String CHAPTER_TEMPLATE_NAME			= "ChapterTemplate.vm";
+	public static String TOPIC_TEMPLATE_NAME			= "TopicTemplate.vm";
+	public static String PREAMBLE_TEMPLATE_NAME			= "XMLWithPreambleTemplate.vm";
 }

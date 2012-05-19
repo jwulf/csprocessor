@@ -42,7 +42,8 @@ public class ContentSpecBuilder implements ShutdownAbleApp {
 	@Override
 	public void shutdown() {
 		isShuttingDown.set(true);
-		docbookBuilder.shutdown();
+		if (docbookBuilder != null)
+			docbookBuilder.shutdown();
 	}
 
 	@Override

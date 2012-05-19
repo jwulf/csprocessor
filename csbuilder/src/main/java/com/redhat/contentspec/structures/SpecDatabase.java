@@ -2,9 +2,12 @@ package com.redhat.contentspec.structures;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.velocity.VelocityContext;
 
 import com.redhat.contentspec.Level;
 import com.redhat.contentspec.SpecTopic;
@@ -12,7 +15,7 @@ import com.redhat.ecs.commonutils.CollectionUtilities;
 
 public class SpecDatabase {
 
-	private Map<Integer, List<SpecTopic>> specTopics = new HashMap<Integer, List<SpecTopic>>();
+	private Map<Integer, Map<SpecTopic, VelocityContext>> specTopics = new HashMap<Integer, Map<SpecTopic, VelocityContext>>();
 	private Map<String, List<SpecTopic>> specTopicsTitles = new HashMap<String, List<SpecTopic>>();
 	private Map<String, List<Level>> specLevels = new HashMap<String, List<Level>>();
 	
@@ -22,7 +25,7 @@ public class SpecDatabase {
 				
 		final Integer topicId = topic.getDBId();
 		if (!specTopics.containsKey(topicId))
-			specTopics.put(topicId, new LinkedList<SpecTopic>());
+			specTopics.put(topicId, new LinkedHashMap<SpecTopic, VelocityContext>());
 		
 		if (!specTopicsTitles.containsKey(escapedTitle))
 			specTopicsTitles.put(escapedTitle, new LinkedList<SpecTopic>());
@@ -37,7 +40,7 @@ public class SpecDatabase {
 			topic.setDuplicateId(Integer.toString(specTopics.get(topicId).size()));
 		}
 		
-		specTopics.get(topicId).add(topic);
+		specTopics.get(topicId).put(topic, null);
 		specTopicsTitles.get(escapedTitle).add(topic);
 	}
 	
@@ -68,10 +71,27 @@ public class SpecDatabase {
 	{
 		if (specTopics.containsKey(topicId))
 		{
-			return specTopics.get(topicId);
+			return CollectionUtilities.toArrayList(specTopics.get(topicId).keySet());
 		}
 		
 		return new LinkedList<SpecTopic>();
+	}
+	
+	public void setSpecTopicContext(final SpecTopic specTopic, final VelocityContext topicCtx)
+	{
+		if (specTopics.containsKey(specTopic.getDBId()) && specTopics.get(specTopic.getDBId()).containsKey(specTopic))
+		{
+			specTopics.get(specTopic.getDBId()).put(specTopic, topicCtx);
+		}
+	}
+
+	public VelocityContext getSpecTopicContext(final SpecTopic specTopic)
+	{
+		if (specTopics.containsKey(specTopic.getDBId()) && specTopics.get(specTopic.getDBId()).containsKey(specTopic))
+		{
+			return specTopics.get(specTopic.getDBId()).get(specTopic);
+		}
+		return null;
 	}
 	
 	public List<SpecTopic> getAllSpecTopics()
@@ -79,7 +99,7 @@ public class SpecDatabase {
 		final ArrayList<SpecTopic> specTopics = new ArrayList<SpecTopic>();
 		for (final Integer topicId: this.specTopics.keySet())
 		{
-			specTopics.addAll(this.specTopics.get(topicId));
+			specTopics.addAll(this.specTopics.get(topicId).keySet());
 		}
 		
 		return specTopics;

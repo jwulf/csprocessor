@@ -90,6 +90,8 @@ public class Constants {
 	public static final String ERROR_LOCAL_COPY_AND_SERVER_UPDATED_MSG		= "The local copy and server copy of the Content Specification has been updated. Please use \"csprocessor pull\" to update your local copy. Your unsaved local changes will be saved as %s.backup.";
 	public static final String ERROR_NO_FILE_OUT_OF_DATE_MSG		= "The \"%s\" file couldn't be found. This could mean the title has changed on the server or the ID is wrong.";
 	public static final String ERROR_NO_USERNAME					= "No username was specified for the server. Please check your configuration files and make sure a username exists.";
+	public static final String ERROR_NO_TEMPLATE_MSG			= "The \"%s\" template for the builder was unable to be found.";
+	public static final String ERROR_TEMPLATE_MALFORMED_MSG		= "The \"%s\" template for the builder is malformed.";
 	
 	// Info Messages
 	public static final String ZIP_SAVED_ERRORS_MSG			= "Content Specification successfully built with %s Errors and %s Warnings";

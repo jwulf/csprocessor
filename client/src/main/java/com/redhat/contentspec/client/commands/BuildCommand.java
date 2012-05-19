@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.velocity.exception.ParseErrorException;
+import org.apache.velocity.exception.ResourceNotFoundException;
+
 import com.beust.jcommander.DynamicParameter;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
@@ -319,6 +322,16 @@ public class BuildCommand extends BaseCommandImpl
 		{
 			builder = new ContentSpecBuilder(restManager);
 			builderOutput = builder.buildBook(csp.getContentSpec(), user, getBuildOptions());
+		}
+		catch (ResourceNotFoundException ex)
+		{
+			printError(String.format(Constants.ERROR_NO_TEMPLATE_MSG, csp.getContentSpec().getOutputStyle()), false);
+			shutdown(Constants.EXIT_INTERNAL_SERVER_ERROR);
+		}
+		catch (ParseErrorException ex)
+		{
+			printError(String.format(Constants.ERROR_TEMPLATE_MALFORMED_MSG, csp.getContentSpec().getOutputStyle()), false);
+			shutdown(Constants.EXIT_INTERNAL_SERVER_ERROR);
 		}
 		catch (Exception e)
 		{
