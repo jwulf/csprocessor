@@ -6,7 +6,7 @@ public class BuilderConstants {
 	public static final Integer MAXIMUM_SET_PROP_TAGS_RETRY = 5;
 	public static final Integer MAXIMUM_SET_PROP_TAG_NAME_RETRY = 50;
 	
-	public static final String BUILDER_VERSION			= "1.3";
+	public static final String BUILDER_VERSION			= "1.4";
 	public static final String BUILD_NAME				= "CSProcessor Builder Version " + BUILDER_VERSION;
 	
 	public static final String RESOURCE_LOCATION		= "/";

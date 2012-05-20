@@ -903,18 +903,11 @@ public class DocbookBuilder<T extends BaseTopicV1<T>> implements ShutdownAbleApp
 					}
 				}
 				
-				/* Convert the template to a document */
-				final StringWriter topicWriter = new StringWriter();
-				topicTemplate.merge(topicCtx, topicWriter);
-				
-				final Document finalDoc = XMLUtilities.convertStringToDocument(topicWriter.toString());
-				specTopic.setXmlDocument(finalDoc);
-				
 				/* 
 				 * Ensure that all of the id attributes are valid
 				 * by setting any duplicates with a post fixed number.
 				 */
-				setUniqueIds(specTopic, finalDoc, usedIdAttributes);
+				setUniqueIds(specTopic, doc, usedIdAttributes);
 			}
 		}
 	}

@@ -221,52 +221,17 @@ public class XMLPreProcessor<T extends BaseTopicV1<T>>
 				}
 			}
 			
-			
-
-			/* build the bugzilla url options */
-			String bugzillaURLComponents = "";
-			
 			/* we need at least a product*/
 			if (bugzillaProduct != null)
-			{
-				bugzillaURLComponents += bugzillaURLComponents.isEmpty() ? "?" : "&amp;";
-				bugzillaURLComponents += "product=" + bugzillaProduct;
-
-				if (bugzillaComponent != null)
-				{
-					bugzillaURLComponents += bugzillaURLComponents.isEmpty() ? "?" : "&amp;";
-					bugzillaURLComponents += "component=" + bugzillaComponent;
-				}
-
-				if (bugzillaVersion != null)
-				{
-					bugzillaURLComponents += bugzillaURLComponents.isEmpty() ? "?" : "&amp;";
-					bugzillaURLComponents += "version=" + bugzillaVersion;
-				}
-
-				if (bugzillaKeywords != null)
-				{
-					bugzillaURLComponents += bugzillaURLComponents.isEmpty() ? "?" : "&amp;";
-					bugzillaURLComponents += "keywords=" + bugzillaKeywords;
-				}
-
-				if (bugzillaAssignedTo != null)
-				{
-					bugzillaURLComponents += bugzillaURLComponents.isEmpty() ? "?" : "&amp;";
-					bugzillaURLComponents += "assigned_to=" + bugzillaAssignedTo;
-				}
-
-				bugzillaURLComponents += bugzillaURLComponents.isEmpty() ? "?" : "&amp;";
-				bugzillaURLComponents += "cf_environment=" + bugzillaEnvironment;
-
-				bugzillaURLComponents += bugzillaURLComponents.isEmpty() ? "?" : "&amp;";
-				bugzillaURLComponents += "cf_build_id=" + bugzillaBuildID;
+			{	
+				topicCtx.put("bugProduct", bugzillaProduct);
+				topicCtx.put("bugComponent", bugzillaComponent);
+				topicCtx.put("bugVersion", bugzillaVersion);
+				topicCtx.put("bugKeywords", bugzillaKeywords);
+				topicCtx.put("bugAssignedTo", bugzillaAssignedTo);
+				topicCtx.put("bugEnvironment", bugzillaEnvironment);
+				topicCtx.put("bugBuildId", bugzillaBuildID);
 			}
-
-			/* build the bugzilla url with the base components */
-			String bugZillaUrl = "https://bugzilla.redhat.com/enter_bug.cgi" + bugzillaURLComponents;
-
-			topicCtx.put("bugLink", bugZillaUrl);
 		}
 		catch (final Exception ex)
 		{
