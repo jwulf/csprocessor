@@ -1,0 +1,39 @@
+## Setup the subtitle value
+#if (${contentSpec.Subtitle})
+	#set ($subtitle = "${contentSpec.Subtitle}")
+	${subtitle}
+#else
+	#set ($subtitle = "Subtitle goes here")
+#end
+## Setup the edition value
+#if (${contentSpec.Edition})
+	#set ($edition = "${contentSpec.Edition}")
+#else
+	#set ($edition = "0")
+#end
+## Setup the pubsnumber value
+#if (${overrides} && ${overrides.containsKey("pubsnumber")} && ${overrides.get("pubsnumber")})
+	#set ($pubsnumber = "${overrides.get('pubsnumber')}")
+#elseif (${contentSpec.Pubsnumber})
+	#set ($pubsnumber = "${contentSpec.Pubsnumber}")
+#else
+	#set ($pubsnumber = "0")
+#end
+## Setup the abstract value
+#if (${contentSpec.Abstract})
+	#set ($abstract = "${contentSpec.Abstract}")
+#else
+	#set ($abstract = "A brief paragraph describing this book. This will be used as the description for the rpm package.")
+#end
+## Setup the bugzilla components value
+#if (${contentSpec.BugzillaComponent})
+	#set ($bugzillaComponent = "${contentSpec.BugzillaComponent}")
+#else
+	#set ($bugzillaComponent = "documentation")
+#end
+## Setup the bugzilla product value
+#if (${contentSpec.BugzillaProduct})
+	#set ($bugzillaProduct = "${contentSpec.BugzillaProduct}")
+#else
+	#set ($bugzillaProduct = "${contentSpec.Product}")
+#end

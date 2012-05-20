@@ -1,0 +1,22 @@
+#parse ( "/templates/ContentSpecDefaults.vm" )
+<bookinfo id="book-${contentSpec.getEscapedTitle()}-${contentSpec.getEscapedTitle()}">
+	<title>${contentSpec.getTitle()}</title>
+	<subtitle>${subtitle}</subtitle>
+	<productname>${contentSpec.getProduct()}</productname>
+	<productnumber>${contentSpec.getVersion()}</productnumber>
+	<edition>${edition}</edition>
+	<pubsnumber>${pubsnumber}</pubsnumber>
+	<abstract>
+		<para>
+			${abstract}
+		</para>
+	</abstract>
+	<corpauthor>
+		<inlinemediaobject>
+			<imageobject>
+				<imagedata fileref="Common_Content/images/title_logo.svg" format="SVG" />
+			</imageobject>
+		</inlinemediaobject>
+	</corpauthor>
+	<xi:include href="Author_Group.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+</bookinfo>

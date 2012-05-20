@@ -1,0 +1,28 @@
+#parse( "AuthorDefaults.vm" )
+<appendix id="appe-Revision_History">
+	<title>Revision History</title>
+	<simpara>
+		<revhistory>
+			<revision>
+				<revnumber>0.0-0</revnumber>
+				## Formated Date in the form Mon Jan 05 2012
+				<date>${date.get("E MMM dd yyyy")}</date>
+				<author>
+					<firstname>${firstname}</firstname>
+					<surname>${lastname}</surname>
+					<email>${email}</email>
+				</author>
+				<revdescription>
+					<simplelist>
+						<member>Initial creation by publican</member>
+					</simplelist>
+#foreach (${revdescription} in ${revdescriptions})
+					<simplelist>
+						<member>${revdescription}</member>
+					</simplelist>
+#end
+				</revdescription>
+			</revision>
+		</revhistory>
+	</simpara>
+</appendix>

@@ -1,0 +1,12 @@
+#if (${topicRevision})
+	#set (${topicString} = "Topic ${topicId}, Revision ${topicRevision}")
+#else
+	#set (${topicString} = "Topic ${topicId}")
+#end
+<warning>
+	<title>Error</title>
+	<para>${topicString} failed Injection processing and is not included in this build.</para>
+#if (${showErrorsPage})
+	<para>Please review the compiler error for <xref linkend="${topicErrorXRef}"/> for more detailed information.</para>"
+#end
+</warning>

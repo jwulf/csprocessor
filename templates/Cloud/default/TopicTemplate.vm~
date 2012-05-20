@@ -1,0 +1,56 @@
+#parse ( "/templates/Macros.vm" )
+#generateBugzillaLink( "https://bugzilla.redhat.com/enter_bug.cgi"$bugProduct $bugComponent $bugVersion $bugAssignedTo $bugKeywords $bugEnvironment $bugBuildId )
+<section id="${topicSectionId}">
+	<title>${title}</title>
+${content}
+## See Also Injections
+#if (${relatedTopics})
+	<formalpara role="refer-to-list">
+		<title>See Also:</title>
+		<para>
+#foreach (${relatedTopic} in ${relatedTopics.keySet()})
+			<itemizedlist>
+				<title>Related ${relatedTopic}s</title>
+#foreach (${relatedTopicLink} in ${relatedTopics.get(${relatedTopic})})
+				<listitem>
+					<para>
+						<xref linkend="${$relatedTopicLink.getFirst()}" />
+					</para>
+				</listitem>
+#end
+			</itemizedlist>
+#end
+		</para>
+	</formalpara>
+#end
+## The various additional information for a topic
+#if (${topicUrl} || ${buildUrl} || ${injectSurveyLink})
+	<formalpara>
+		<title/>
+#if (${injectSurveryLink})
+		<para role="RoleCreateBugPara">
+			Thank you for evaluating the new documentation format for JBoss Enterprise Application Platform. Let us know what you think by taking a short <ulink url="https://www.keysurvey.com/survey/380730/106f/">survey</ulink>.
+		</para>
+#end
+#if (${topicUrl})
+		<remark role="RoleViewInSkyNetPara">
+			<ulink url="${topicUrl}">View in Skynet</ulink>
+		</remark>
+#end
+#if (${buildUrl})
+		<remark role="RoleBuildVersionPara">
+			<ulink url="${buildUrl}">Built with ${buildName}</ulink>
+		</remark>
+#end
+	</formalpara>
+#end
+## Inject the bug reporting links
+#if (${injectBugLink})
+	<formalpara>
+		<title/>
+		<para role="RoleCreateBugPara">
+			<ulink url="${bugzillaLink}>Report a bug</ulink>
+		</para>
+	</formalpara>
+#end
+</section>

@@ -1,0 +1,11 @@
+#if ($contentSpec.getSubtitle())
+	#set ($subtitle = $contentSpec.getSubtitle())
+#else
+	#set ($subtitle = "Subtitle goes here")
+#end
+
+#if ($contentSpec.getEdition())
+	#set ($edition = $contentSpec.getEdition())
+#else
+	#set ($edition = "0")
+#end

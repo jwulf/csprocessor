@@ -1,0 +1,5 @@
+#parse ( "/templates/Macros.vm" )
+<chapter id="${chapterId}">
+	<title>${title}</title>
+	#processChildLevels(${levels} "	")
+</section>

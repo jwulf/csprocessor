@@ -1,0 +1,17 @@
+#if ($author.getFirstName())
+	#set ($firstname = $author.getFirstName())
+#else
+	#set ($firstname = "SkyNet")
+#end
+
+#if ($author.getLastName())
+	#set ($lastname = $author.getLastName())
+#else
+	#set ($lastname = "Aplha Build System")
+#end
+
+#if ($author.getEmail())
+	#set ($email = $author.getEmail())
+#else
+	#set ($email = "robot@devull.com")
+#end

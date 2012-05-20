@@ -1,0 +1,70 @@
+######################################
+## Nested Section/Chapter Generator ##
+######################################
+#macro (processChildLevels $children $indent)
+#foreach ($child in ${children})
+#if (${child.isExternalFile()})
+${indent}<xi:include href="${child.Filename}" xmlns:xi="http://www.w3.org/2001/XInclude" />
+#else
+$indent<${child.ElementName} #if (${child.ElementId})id="${child.ElementId}" #end>
+$indent	<title>${child.Title}</titile>
+#if (${child.hasChildLevels()})
+#processChildLevels(${child.getChildLevels()} "$indent	")
+#else
+$indent<warning>
+$indent		No Content!
+$indent	</warning>
+#end
+$indent</${child.ElementName}>
+#end
+#end
+#end
+######################################
+## 		Bugzilla Link Generator		##
+######################################
+#macro (generateBugzillaLink $bugzillaUrl $bugzillaProduct $bugzillaComponent $bugzillaVersion $bugzillaAssignedTo $bugzillaKeywords $bugzillaEnvironment $bugzillaBuildId )
+#set ($bugzillalink = "${bugzillaUrl}")
+#if (${bugzillaProduct} || ${bugzillaComponent} || ${bugzillaVersion} || ${bugzillaAssignedTo} || ${bugzillaKeywords} || ${bugzillaEnvironment} || ${bugzillaBuildId})
+#set ($bugzillalink = "${bugzillalink}?")
+## Add the Bugzilla Product
+#if (${bugzillaProduct})
+#set ($bugzillalink = "${bugzillalink}product=${bugzillaProduct}")
+#end
+## Add the Bugzilla Component
+#if (${bugzillaComponent} && ${bugzillalink} == "${bugzillaUrl}?")
+#set ($bugzillalink = "${bugzillalink}component=${bugzillaComponent}")
+#elseif (${bugzillaComponent})
+#set ($bugzillalink = "${bugzillalink}&amp;component=${bugzillaComponent}")
+#end
+## Add the Bugzilla Version
+#if (${bugzillaVersion} && ${bugzillalink} == "${bugzillaUrl}?")
+#set ($bugzillalink = "${bugzillalink}version=${bugzillaVersion}")
+#elseif (${bugzillaVersion})
+#set ($bugzillalink = "${bugzillalink}&amp;version=${bugzillaVersion}")
+#end
+## Add the Bugzilla Assigned To
+#if (${bugzillaAssignedTo} && ${bugzillalink} == "${bugzillaUrl}?")
+#set ($bugzillalink = "${bugzillalink}assigned_to=${bugzillaAssignedTo}")
+#elseif (${bugzillaAssignedTo})
+#set ($bugzillalink = "${bugzillalink}&amp;assigned_to=${bugzillaAssignedTo}")
+#end
+## Add the Bugzilla Keywords
+#if (${bugzillaKeywords} && ${bugzillalink} == "${bugzillaUrl}?")
+#set ($bugzillalink = "${bugzillalink}keywords=${bugzillaKeywords}")
+#elseif (${bugzillaKeywords})
+#set ($bugzillalink = "${bugzillalink}&amp;keywords=${bugzillaKeywords}")
+#end
+## Add the Bugzilla Environment
+#if (${bugzillaEnvironment} && ${bugzillalink} == "${bugzillaUrl}?")
+#set ($bugzillalink = "${bugzillalink}cf_environment=${bugzillaEnvironment}")
+#elseif (${bugzillaEnvironment})
+#set ($bugzillalink = "${bugzillalink}&amp;cf_environment=${bugzillaEnvironment}")
+#end
+## Add the Bugzilla Build ID
+#if (${bugzillaBuildId} && ${bugzillalink} == "${bugzillaUrl}?")
+#set ($bugzillalink = "${bugzillalink}cf_build_id=${bugzillaBuildId}")
+#elseif (${bugzillaBuildId})
+#set ($bugzillalink = "${bugzillalink}&amp;cf_build_id=${bugzillaBuildId}")
+#end
+#end
+#end

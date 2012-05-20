@@ -1,0 +1,30 @@
+<authorgroup>
+#if (${authors} && !${authors.isEmpty()})
+#foreach (${author} in ${authors})
+	<author>
+		<firstname>${author.getFirstName()}</firstname>
+		<surname>${author.getLastName()}</surname>
+		#if (${author.getOrganization()})
+       	<affiliation>
+        	<orgname>${author.getOrganization()}</orgname>
+			#if (${author.getOrgDivision()})
+           	<orgdiv>${author.getOrgDivision()}</orgdiv>
+			#end
+       	</affiliation>
+		#end
+		#if (${author.getEmail()})
+		<email>${author.getEmail()}</email>
+		#end
+	</author>
+#end
+#else
+	<author>
+		<firstname>Content Spec</firstname>
+		<surname>Alpha Build System</surname>
+       	<affiliation>
+        	<orgname>Red Hat</orgname>
+           	<orgdiv>Engineering Content Services</orgdiv>
+       	</affiliation>
+    </author>
+#end
+</authorgroup>
