@@ -1,5 +1,0 @@
-<section>
-	<title>${title}</title>
-	<
-	${contentTemplate}
-</section>

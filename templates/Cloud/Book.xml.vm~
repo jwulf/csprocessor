@@ -1,6 +1,0 @@
-<book>
-	<xi:include href="Book_Info.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
-#foreach (${chapter} in ${chapters})
-	${chapter}
-#end
-</book>

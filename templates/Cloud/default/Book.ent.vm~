@@ -1,9 +1,0 @@
-#parse ( "/templates/ContentSpecDefaults.vm" )
-<!ENTITY PRODUCT "${contentSpec.getProduct()}">
-<!ENTITY BOOKID "${contentSpec.getEscapedTitle()}">
-<!ENTITY YEAR "${date.get("yyyy")}">
-<!ENTITY TITLE "${contentSpec.getTitle()}">
-<!ENTITY HOLDER "${contentSpec.getCopyrightHolder()}">
-<!ENTITY BZURL "https://bugzilla.redhat.com/">
-<!ENTITY BZCOMPONENT "${bugzillaComponent}">
-<!ENTITY BZPRODUCT "${bugzillaProduct}">

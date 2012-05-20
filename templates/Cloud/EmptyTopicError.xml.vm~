@@ -1,4 +1,0 @@
-#set (${contentTemplate} = "./Cloud/EmptyTopicError.xml.vm")
-<note>
-	<para>This topic has no XML content, and is included here as a placeholder.</para>
-</note>
